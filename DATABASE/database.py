@@ -1,5 +1,7 @@
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+
+from DATABASE.models import Base
 
 DATABASE_URL = "sqlite:///./DATABASE/users.db"
 
@@ -11,4 +13,6 @@ SessionLocal = sessionmaker(
     bind=engine
 )
 
-print(SessionLocal)
+Base.metadata.create_all(bind=engine)
+
+print("테이블 생성 완료!")
